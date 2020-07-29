@@ -8,3 +8,12 @@ document.getElementById("app").innerHTML = `
   <a href="https://parceljs.org" target="_blank" rel="noopener noreferrer">here</a>.
 </div>
 `;
+
+var client = new WebTorrent()
+
+      client.add('https://webseed.btorrent.xyz/timedrift-alpine-4k-timelapse.mp4.torrent', function (torrent) {
+        // Got torrent metadata!
+        console.log('Client is downloading:', torrent.infoHash)
+
+        torrent.files[0].appendTo('body')
+      })
