@@ -11,7 +11,7 @@ document.getElementById("app").innerHTML = `
 
 var client = new WebTorrent()
 
-      client.add('https://webseed.btorrent.xyz/timedrift-alpine-4k-timelapse.mp4.torrent', function (torrent) {
+      client.add('https://swarm-test.netlify.app/immaterialcloud.mp4', function (torrent) {
         // Got torrent metadata!
         console.log('Client is downloading:', torrent.infoHash)
 
