@@ -117,79 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../../AppData/Roaming/npm/node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
-
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
-
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../../AppData/Roaming/npm/node_modules/parcel/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
-    }
-
-    cssTimeout = null;
-  }, 50);
-}
-
-module.exports = reloadCSS;
-},{"./bundle-url":"../../AppData/Roaming/npm/node_modules/parcel/src/builtins/bundle-url.js"}],"src/styles.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../AppData/Roaming/npm/node_modules/parcel/src/builtins/css-loader.js"}],"../../AppData/Roaming/npm/node_modules/parcel/node_modules/events/events.js":[function(require,module,exports) {
+})({"../../AppData/Roaming/npm/node_modules/parcel/node_modules/events/events.js":[function(require,module,exports) {
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -23774,26 +23702,26 @@ module.exports = Wire
 
 },{"unordered-array-remove":"node_modules/unordered-array-remove/index.js","bencode":"node_modules/bencode/lib/index.js","bitfield":"node_modules/bitfield/index.js","debug":"node_modules/debug/src/browser.js","randombytes":"node_modules/randombytes/browser.js","speedometer":"node_modules/speedometer/index.js","readable-stream":"node_modules/readable-stream/readable-browser.js","buffer":"../../AppData/Roaming/npm/node_modules/parcel/node_modules/buffer/index.js"}],"node_modules/webtorrent/package.json":[function(require,module,exports) {
 module.exports = {
-  "_from": "webtorrent",
+  "_from": "webtorrent@^0.108.6",
   "_id": "webtorrent@0.108.6",
   "_inBundle": false,
   "_integrity": "sha512-hkwjMQTbBiwdJn3vEVjOyNwKZISp6r4GEl/J0N6Ukw2oeaETIylvAlf7G0o+a9FcFMThBIle0iCPYLTwumCOaQ==",
   "_location": "/webtorrent",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
+    "type": "range",
     "registry": true,
-    "raw": "webtorrent",
+    "raw": "webtorrent@^0.108.6",
     "name": "webtorrent",
     "escapedName": "webtorrent",
-    "rawSpec": "",
+    "rawSpec": "^0.108.6",
     "saveSpec": null,
-    "fetchSpec": "latest"
+    "fetchSpec": "^0.108.6"
   },
   "_requiredBy": ["#USER", "/"],
   "_resolved": "https://registry.npmjs.org/webtorrent/-/webtorrent-0.108.6.tgz",
   "_shasum": "7e9f8ccc745149ae33c964abb691b22a5c2f49ee",
-  "_spec": "webtorrent",
+  "_spec": "webtorrent@^0.108.6",
   "_where": "C:\\Users\\Tate\\Documents\\swarm-test",
   "author": {
     "name": "WebTorrent LLC",
@@ -27175,12 +27103,6 @@ function isFileList(obj) {
 
 module.exports = WebTorrent;
 },{"events":"../../AppData/Roaming/npm/node_modules/parcel/node_modules/events/events.js","simple-concat":"node_modules/simple-concat/index.js","create-torrent":"node_modules/create-torrent/index.js","debug":"node_modules/debug/src/browser.js","bittorrent-dht/client":"../../AppData/Roaming/npm/node_modules/parcel/src/builtins/_empty.js","load-ip-set":"../../AppData/Roaming/npm/node_modules/parcel/src/builtins/_empty.js","run-parallel":"node_modules/run-parallel/index.js","parse-torrent":"node_modules/parse-torrent/index.js","path":"../../AppData/Roaming/npm/node_modules/parcel/node_modules/path-browserify/index.js","simple-peer":"node_modules/simple-peer/index.js","randombytes":"node_modules/randombytes/browser.js","speedometer":"node_modules/speedometer/index.js","./lib/tcp-pool":"../../AppData/Roaming/npm/node_modules/parcel/src/builtins/_empty.js","./lib/torrent":"node_modules/webtorrent/lib/torrent.js","./package.json":"node_modules/webtorrent/package.json","buffer":"../../AppData/Roaming/npm/node_modules/parcel/node_modules/buffer/index.js","process":"../../AppData/Roaming/npm/node_modules/parcel/node_modules/process/browser.js"}],"src/index.js":[function(require,module,exports) {
-"use strict";
-
-require("./styles.css");
-
-document.getElementById("app").innerHTML = "\n<h1>Hello Vanilla!</h1>\n<div>\n  We use the same configuration as Parcel to bundle this sandbox, you can find more\n  info about Parcel \n  <a href=\"https://parceljs.org\" target=\"_blank\" rel=\"noopener noreferrer\">here</a>.\n</div>\n";
-
 var WebTorrent = require('webtorrent');
 
 var client = new WebTorrent();
@@ -27189,7 +27111,7 @@ client.add('https://swarm-test.netlify.app/immaterialcloud.torrent', function (t
   console.log('Client is downloading:', torrent.infoHash);
   torrent.files[0].appendTo('body');
 });
-},{"./styles.css":"src/styles.css","webtorrent":"node_modules/webtorrent/index.js"}],"../../AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"webtorrent":"node_modules/webtorrent/index.js"}],"../../AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -27217,7 +27139,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57617" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57740" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
