@@ -1,4 +1,5 @@
 var WebTorrent = require('webtorrent')
+var moment = require('moment')
 var client = new WebTorrent()
 
 var torrentId = "https://swarm-test.netlify.app/immaterialcloud.torrent"
