@@ -27106,7 +27106,7 @@ module.exports = WebTorrent;
 var WebTorrent = require('webtorrent');
 
 var client = new WebTorrent();
-var torrentId = "http://swarm-test.netlify.app/immaterialcloud.torrent"; // HTML elements
+var torrentId = "https://swarm-test.netlify.app/immaterialcloud.torrent"; // HTML elements
 
 var $body = document.body;
 var $progressBar = document.querySelector('#progressBar');

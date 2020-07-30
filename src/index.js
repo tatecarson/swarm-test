@@ -1,7 +1,7 @@
 var WebTorrent = require('webtorrent')
 var client = new WebTorrent()
 
-var torrentId = "http://swarm-test.netlify.app/immaterialcloud.torrent"
+var torrentId = "https://swarm-test.netlify.app/immaterialcloud.torrent"
 
 // HTML elements
 var $body = document.body
