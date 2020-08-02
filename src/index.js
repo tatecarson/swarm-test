@@ -15,52 +15,65 @@ var $uploadSpeed = document.querySelector('#uploadSpeed')
 var $downloadSpeed = document.querySelector('#downloadSpeed')
 
 // Download the torrent
-client.add(torrentId, function (torrent) {
+// client.add(torrentId, function (torrent) {
 
-  // Torrents can contain many files. Let's use the .mp4 file
-  var file = torrent.files.find(function (file) {
-    return file.name.endsWith('.mp4')
-  })
+//   // Torrents can contain many files. Let's use the .mp4 file
+//   var file = torrent.files.find(function (file) {
+//     return file.name.endsWith('.mp4')
+//   })
 
-  // Stream the file in the browser
-  file.appendTo('#output')
+//   // Stream the file in the browser
+//   file.appendTo('#output')
 
-  // Trigger statistics refresh
-  torrent.on('done', onDone)
-  setInterval(onProgress, 500)
-  onProgress()
+//   // Trigger statistics refresh
+//   torrent.on('done', onDone)
+//   setInterval(onProgress, 500)
+//   onProgress()
 
-  // Statistics
-  function onProgress () {
-    // Peers
-    $numPeers.innerHTML = torrent.numPeers + (torrent.numPeers === 1 ? ' peer' : ' peers')
+//   // Statistics
+//   function onProgress () {
+//     // Peers
+//     $numPeers.innerHTML = torrent.numPeers + (torrent.numPeers === 1 ? ' peer' : ' peers')
 
-    // Progress
-    var percent = Math.round(torrent.progress * 100 * 100) / 100
-    $progressBar.style.width = percent + '%'
-    $downloaded.innerHTML = prettyBytes(torrent.downloaded)
-    $total.innerHTML = prettyBytes(torrent.length)
+//     // Progress
+//     var percent = Math.round(torrent.progress * 100 * 100) / 100
+//     $progressBar.style.width = percent + '%'
+//     $downloaded.innerHTML = prettyBytes(torrent.downloaded)
+//     $total.innerHTML = prettyBytes(torrent.length)
 
-    // Remaining time
-    var remaining
-    if (torrent.done) {
-      remaining = 'Done.'
-    } else {
-      remaining = moment.duration(torrent.timeRemaining / 1000, 'seconds').humanize()
-      remaining = remaining[0].toUpperCase() + remaining.substring(1) + ' remaining.'
-    }
-    $remaining.innerHTML = remaining
+//     // Remaining time
+//     var remaining
+//     if (torrent.done) {
+//       remaining = 'Done.'
+//     } else {
+//       remaining = moment.duration(torrent.timeRemaining / 1000, 'seconds').humanize()
+//       remaining = remaining[0].toUpperCase() + remaining.substring(1) + ' remaining.'
+//     }
+//     $remaining.innerHTML = remaining
 
-    // Speed rates
-    $downloadSpeed.innerHTML = prettyBytes(torrent.downloadSpeed) + '/s'
-    $uploadSpeed.innerHTML = prettyBytes(torrent.uploadSpeed) + '/s'
-  }
-  function onDone () {
-    $body.className += ' is-seed'
-    onProgress()
-  }
-})
+//     // Speed rates
+//     $downloadSpeed.innerHTML = prettyBytes(torrent.downloadSpeed) + '/s'
+//     $uploadSpeed.innerHTML = prettyBytes(torrent.uploadSpeed) + '/s'
+//   }
+//   function onDone () {
+//     $body.className += ' is-seed'
+//     onProgress()
+//   }
+// })
 
+client.add('https://swarm-test.netlify.app/nime2019_papper001.pdf.torrent', function (torrent) {
+        // Got torrent metadata!
+        console.log('Client is downloading:', torrent.infoHash)
+        torrent.files[0].getBlobURL(function(err, url) {
+          if (err) return console.log(err)
+          var a = document.createElement('a')
+          a.target = '_blank'
+          a.download = torrent.files[0].name
+          a.href = url
+          a.textContent = 'Download ' + torrent.files[0].name
+          document.body.appendChild(a)
+        })
+      })
 // Human readable bytes util
 function prettyBytes(num) {
   var exponent, unit, neg = num < 0, units = ['B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
