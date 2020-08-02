@@ -61,7 +61,7 @@ var $downloadSpeed = document.querySelector('#downloadSpeed')
 //   }
 // })
 
-client.add('https://swarm-test.netlify.app/nime2019_papper001.pdf.torrent', function (torrent) {
+client.add('https://swarm-test.netlify.app/nime2019_paper001.pdf.torrent', function (torrent) {
         // Got torrent metadata!
         console.log('Client is downloading:', torrent.infoHash)
         torrent.files[0].getBlobURL(function(err, url) {
